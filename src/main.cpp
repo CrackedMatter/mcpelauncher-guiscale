@@ -149,7 +149,7 @@ extern "C" [[gnu::visibility("default")]] void mod_init() {
     auto ClientInstance_typeinfo_name = hat::find_pattern(range1, hat::object_to_signature("14ClientInstance")).get();
     auto ClientInstance_typeinfo      = hat::find_pattern(range2, hat::object_to_signature(ClientInstance_typeinfo_name)).get() - sizeof(void*);
     auto ClientInstance_vtable        = hat::find_pattern(range2, hat::object_to_signature(ClientInstance_typeinfo)).get() + sizeof(void*);
-    auto ClientInstance_update        = reinterpret_cast<void (**)(void**, bool)>(ClientInstance_vtable) + 23;
+    auto ClientInstance_update        = reinterpret_cast<bool (**)(void**, bool)>(ClientInstance_vtable) + 23;
 
     static auto ClientInstance_update_orig = *ClientInstance_update;
 
@@ -178,6 +178,6 @@ extern "C" [[gnu::visibility("default")]] void mod_init() {
                 true);
         }
 
-        ClientInstance_update_orig(self, b);
+        return ClientInstance_update_orig(self, b);
     };
 }
