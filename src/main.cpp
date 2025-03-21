@@ -47,10 +47,12 @@ extern "C" [[gnu::visibility("default")]] void mod_preinit() {
 
     menuSubEntries[0] = {
         .name     = "Enable",
-        .click    = [](void*) {
-            config.enable = !config.enable;
-            saveConfig(); },
         .selected = [](void*) { return config.enable; },
+        .click =
+            [](void*) {
+                config.enable = !config.enable;
+                saveConfig();
+            },
     };
 
     menuSubEntries[1] = {
@@ -74,6 +76,7 @@ extern "C" [[gnu::visibility("default")]] void mod_preinit() {
                 .min      = 0,
                 .def      = config.round,
                 .max      = 1,
+                .user     = nullptr,
                 .onChange = [](void*, int value) { config.round = value; },
             };
 
