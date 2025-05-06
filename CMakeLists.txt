@@ -17,8 +17,8 @@ add_library(mcpelauncherguiscale SHARED
 
 target_compile_options(mcpelauncherguiscale PRIVATE -Wall -Wextra -Wconversion -Wpedantic)
 
-CPMAddPackage("gh:BasedInc/libhat#69149a1cee5a0228492826bd71af1a32d73ed87e")
-CPMAddPackage("gh:stephenberry/glaze@5.0.1")
+CPMAddPackage("gh:BasedInc/libhat@0.5.0")
+CPMAddPackage("gh:stephenberry/glaze@5.2.0")
 target_link_libraries(mcpelauncherguiscale PRIVATE libhat::libhat glaze::glaze)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")

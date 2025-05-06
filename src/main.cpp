@@ -152,13 +152,13 @@ extern "C" [[gnu::visibility("default")]] void mod_init() {
     auto ClientInstance_typeinfo_name = hat::find_pattern(range1, hat::object_to_signature("14ClientInstance")).get();
     auto ClientInstance_typeinfo      = hat::find_pattern(range2, hat::object_to_signature(ClientInstance_typeinfo_name)).get() - sizeof(void*);
     auto ClientInstance_vtable        = hat::find_pattern(range2, hat::object_to_signature(ClientInstance_typeinfo)).get() + sizeof(void*);
-    auto ClientInstance_update        = reinterpret_cast<bool (**)(void**, bool)>(ClientInstance_vtable) + 23;
+    auto ClientInstance_update        = reinterpret_cast<bool (**)(void**, bool)>(ClientInstance_vtable) + 25;
 
     static auto ClientInstance_update_orig = *ClientInstance_update;
 
     *ClientInstance_update = [](void** self, bool b) {
-        auto getGuiData           = static_cast<GuiDataPtr (**)(void*)>(*self)[243];
-        auto forEachVisibleScreen = static_cast<void (**)(void*, std::function<bool(void*&)>, bool)>(*self)[280];
+        auto getGuiData           = static_cast<GuiDataPtr (**)(void*)>(*self)[245];
+        auto forEachVisibleScreen = static_cast<void (**)(void*, std::function<bool(void*&)>, bool)>(*self)[282];
 
         auto& guiData        = *getGuiData(self).ptr;
         auto& screenSizeData = guiData.screenSizeData;
