@@ -157,8 +157,8 @@ extern "C" [[gnu::visibility("default")]] void mod_init() {
     static auto ClientInstance_update_orig = *ClientInstance_update;
 
     *ClientInstance_update = [](void** self, bool b) {
-        auto getGuiData           = static_cast<GuiDataPtr (**)(void*)>(*self)[247];
-        auto forEachVisibleScreen = static_cast<void (**)(void*, std::function<bool(void*&)>, bool)>(*self)[284];
+        auto getGuiData           = static_cast<GuiDataPtr (**)(void*)>(*self)[249];
+        auto forEachVisibleScreen = static_cast<void (**)(void*, std::function<bool(void*&)>, bool)>(*self)[286];
 
         auto& guiData        = *getGuiData(self).ptr;
         auto& screenSizeData = guiData.screenSizeData;
